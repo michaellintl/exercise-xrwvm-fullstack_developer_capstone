@@ -10,8 +10,8 @@ urlpatterns = [
     path('contact/', TemplateView.as_view(template_name="Contact.html")),
     path(route='login', view=views.login_user, name='login'),
     path(route='logout', view=views.logout_request, name='logout'),
+    path(route='register', view=views.registration, name='register'),
 
-    # path for registration
 
     # path for dealer reviews view
 
