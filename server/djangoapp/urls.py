@@ -8,10 +8,10 @@ app_name = 'djangoapp'
 urlpatterns = [
     path('about/', TemplateView.as_view(template_name="About.html")),
     path('contact/', TemplateView.as_view(template_name="Contact.html")),
-    # # path for registration
+    path(route='login', view=views.login_user, name='login'),
+    path(route='logout', view=views.logout_request, name='logout'),
 
-    # path for login
-    # path(route='login', view=views.login_user, name='login'),
+    # path for registration
 
     # path for dealer reviews view
 
