@@ -50,13 +50,14 @@ def registration(request):
     email = data['email']
 
     username_exist = False
-    #email_exist = False
+    # email_exist = False
     try:
         # Check if user already exists
         User.objects.get(username=username)
         username_exist = True
     except Exception as e:
         # If not, simply log this is a new user
+        print(e)
         logger.debug(f"{username} is a new user")
 
     if not username_exist:
@@ -119,12 +120,13 @@ def get_dealer_details(request, dealer_id):
 
 
 def add_review(request):
-    if (request.user.is_anonymous == False):
+    if not request.user.is_anonymous:
         data = json.loads(request.body)
         try:
-            response = post_review(data)
+            post_review(data)
             return JsonResponse({"status": 200})
         except Exception as e:
+            print(e)
             return JsonResponse({"status": 401, "message": "Error in posting review"})
     else:
         return JsonResponse({"status": 403, "message": "Unauthorized"})
